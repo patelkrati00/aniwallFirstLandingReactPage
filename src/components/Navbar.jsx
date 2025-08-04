@@ -4,15 +4,14 @@ import { Menu, X } from "lucide-react";
 import { useState } from "react";
 
 const Navbar = () => {
-    const [mobileDrawerOpen, SetMobileDrawerOpen] = useState(false);
+    const [mobileDrawerOpen, setMobileDrawerOpen] = useState(false);
     const toggleNavbar = () => {
-        SetMobileDrawerOpen(!mobileDrawerOpen);
+        setMobileDrawerOpen(!mobileDrawerOpen);
     }
     return (
         <nav className="sticky top-0 z-50 py-3 backdrop-blur-lg border-b border-neutral-700/80">
-            <div className="container px-4 mx-auto relative text-sm">
-                <div className="flex justify-between items-center ">
-
+            <div className="max-w-7xl mx-auto px-4 relative text-sm">
+                <div className="flex justify-between items-center">
                     <div className="flex items-center flex-shrink-0">
                         <img className="h-10 w-10 mr-2" src={logo} alt="logo" />
                         <span className="text-xl tracking-tight">VirtualR</span>
@@ -27,37 +26,35 @@ const Navbar = () => {
                     </ul>
 
                     <div className="hidden lg:flex space-x-12">
-                        <a href="#" className="text-white border rounded-md p-2 ">Sign In</a>
-
-                        <a href="#" className="bg-gradient-to-r from-orange-500 to-orange-800 px-2 py-2  rounded-md">Create Account</a>
-
+                        <a href="#" className="text-white border rounded-md p-2">Sign In</a>
+                        <a href="#" className="bg-gradient-to-r from-orange-500 to-orange-800 px-2 py-2 rounded-md">Create Account</a>
                     </div>
-                    <div className="lg:hidden md:flex flex-col justify-end ">
+                    
+                    <div className="lg:hidden md:flex flex-col justify-end">
                         <button onClick={toggleNavbar}>
                             {mobileDrawerOpen ? <X /> : <Menu />}
                         </button>
                     </div>
                 </div>
+                
                 {mobileDrawerOpen && (
-                <div className="lg:hidden flex flex-col  items-center p-12 w-full z-20 bg-neutral-900 fixed right-0 ">
-                    <ul>
-                        {navItems.map((item, index) => (
-                            <li className="py-4" key={index}>
-                                <a href="item.href">{item.label}</a>
-                            </li>
-                        ))}
-                    </ul>
-                    <div className="flex space-x-4 py-6">
-                        <a className="px-3 py-2 border rounded-md" href="">Sign In</a>
-                        <a href="" className="bg-gradient-to-r px-3 py-2 rounded-md from-orange-500 to-orange-800">Create an account</a>
-                         </div>
-                </div>
+                    <div className="lg:hidden flex flex-col items-center p-12 w-full fixed left-0 top-16 bg-neutral-900 z-50">
+                        <ul>
+                            {navItems.map((item, index) => (
+                                <li className="py-4" key={index}>
+                                    <a href={item.href}>{item.label}</a>
+                                </li>
+                            ))}
+                        </ul>
+                        <div className="flex space-x-4 py-6">
+                            <a className="px-3 py-2 border rounded-md" href="#">Sign In</a>
+                            <a href="#" className="bg-gradient-to-r px-3 py-2 rounded-md from-orange-500 to-orange-800">Create an account</a>
+                        </div>
+                    </div>
                 )}
             </div>
         </nav>
     );
 };
 
-
-
-export default Navbar
+export default Navbar;
